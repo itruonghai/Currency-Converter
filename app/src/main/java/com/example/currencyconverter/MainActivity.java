@@ -134,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
         TextView textview = (TextView) findViewById(R.id.ScreenNumber) ;
         onScreen = "" ;
         textview.setText("0");
+        ((TextView)findViewById(R.id.vndcurrency)).setText("0");
+        ((TextView)findViewById(R.id.now)).setText("0");
+
+
     }
     public void equalClicked(View view){
 

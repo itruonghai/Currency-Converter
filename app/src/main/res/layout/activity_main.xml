@@ -85,6 +85,7 @@
                 android:textAlignment="textEnd"
                 android:textSize="25sp"
                 android:id="@+id/now"
+                android:maxLines="1"
                 android:text="0"
                 android:layout_gravity="center_vertical"/>
             <TextView
