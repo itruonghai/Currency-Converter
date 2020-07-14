@@ -62,11 +62,14 @@ class CountryListViewAdapter extends BaseAdapter {
         holder.tv1.setText(Country.getCountryName());
         holder.tv2.setText(Country.getCurrencyName());
         if (Country.getCountryName()== "USA" )
-            holder.img.setBackgroundResource(R.drawable.euro1);
+            holder.img.setBackgroundResource(R.drawable.usa1);
         else if (Country.getCountryName()== "Japan" )
-            holder.img.setBackgroundResource(R.drawable.usa1);
+            holder.img.setBackgroundResource(R.drawable.japan);
         else if (Country.getCountryName()== "Euro" )
-            holder.img.setBackgroundResource(R.drawable.usa1);
+            holder.img.setBackgroundResource(R.drawable.euro1);
+        else if (Country.getCountryName()== "British" )
+            holder.img.setBackgroundResource(R.drawable.british);
+
 
 
 

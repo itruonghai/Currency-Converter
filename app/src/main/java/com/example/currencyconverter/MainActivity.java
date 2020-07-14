@@ -2,6 +2,7 @@ package com.example.currencyconverter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -23,16 +24,21 @@ public class MainActivity extends AppCompatActivity {
     CountryListViewAdapter CountryListViewAdapter;
     ListView listViewCountry;
     String onScreen = "" ;
-
+    double currentratio = new Double(0.000043);
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         CountryList = new ArrayList<>() ;
-        CountryList.add(new Country("USA", "@drawable/usa1", "USA")) ;
-        CountryList.add(new Country("Japan", "@drawable/japan", "Japanese Yen")) ;
-        CountryList.add(new Country("Euro", "@drawable/euro", "Euro")) ;
+        CountryList.add(new Country("USA", "@drawable/usa1", "United States Dollar $ ",0.000043)) ;
+        CountryList.add(new Country("Japan", "@drawable/japan", "Japanese Yen ¥",0.0046)) ;
+        CountryList.add(new Country("Euro", "@drawable/euro1", "Euro €",0.000038)) ;
+        CountryList.add(new Country("British", "@drawable/british", "Pound Sterling £",0.000034)) ;
+        CountryList.add(new Country("USA", "@drawable/usa1", "United States Dollar $ ",0.000043)) ;
+        CountryList.add(new Country("Japan", "@drawable/japan", "Japanese Yen ¥",0.0046)) ;
+        CountryList.add(new Country("Euro", "@drawable/euro1", "Euro €",0.000038)) ;
+        CountryList.add(new Country("British", "@drawable/british", "Pound Sterling £",0.000034)) ;
         CountryListViewAdapter = new CountryListViewAdapter(CountryList);
 
         listViewCountry = findViewById(R.id.listviewcountry);
@@ -45,16 +51,31 @@ public class MainActivity extends AppCompatActivity {
                 TextView text = (TextView) findViewById(R.id.NameCurrency);
                 ImageView img = (ImageView) findViewById(R.id.img) ;
                 if (country.getCountryName().equals("USA") ) {
-                    img.setBackgroundResource(R.drawable.euro1);
-                    text.setText(country.getCurrencyName());
-                }
-                else if (country.getCountryName().equals("Japan")) {
-                    img.setBackgroundResource(R.drawable.euro1);
-                    text.setText(country.getCurrencyName());
-                }
-                else if (country.getCountryName().equals("Euro") ){
                     img.setBackgroundResource(R.drawable.usa1);
                     text.setText(country.getCurrencyName());
+                    currentratio = country.getRatiorate() ;
+                    changeCurrency();
+                }
+                else if (country.getCountryName().equals("Japan")) {
+                    img.setBackgroundResource(R.drawable.japan);
+                    text.setText(country.getCurrencyName());
+                    currentratio = country.getRatiorate() ;
+                    changeCurrency();
+
+                }
+                else if (country.getCountryName().equals("Euro") ){
+                    img.setBackgroundResource(R.drawable.euro1);
+                    text.setText(country.getCurrencyName());
+                    currentratio = country.getRatiorate() ;
+                    changeCurrency();
+
+                }
+                else if (country.getCountryName().equals("British") ){
+                    img.setBackgroundResource(R.drawable.british);
+                    text.setText(country.getCurrencyName());
+                    currentratio = country.getRatiorate() ;
+                    changeCurrency();
+
                 }
 
             }
@@ -71,8 +92,13 @@ public class MainActivity extends AppCompatActivity {
             if (Character.isDigit(c)) {
                 parsedInteger += c;
             }
+            int parsed = 0 ;
             if (!Character.isDigit(c) || i == input.length()-1){
-                int parsed = Integer.parseInt(parsedInteger);
+                try {
+                    parsed = Integer.parseInt(parsedInteger);
+                }catch( NumberFormatException e){
+                    return "BAD EXPRESSION";
+                }
                 if (operator == "") {
                     aggregate = parsed;
                 }
@@ -112,14 +138,31 @@ public class MainActivity extends AppCompatActivity {
     public void equalClicked(View view){
 
         TextView textview = (TextView) findViewById(R.id.vndcurrency) ;
+        TextView textviewtarget = (TextView) findViewById(R.id.now) ;
         String answer = calculate(onScreen) ;
-        if (answer == "BAD EXPRESSION")
-            ((TextView) findViewById(R.id.ScreenNumber)).setText(answer) ;
-        else {
-            textview.setText(String.valueOf(answer));
-            onScreen = "";
+        if (answer == "BAD EXPRESSION") {
+            ((TextView) findViewById(R.id.ScreenNumber)).setText(answer);
+            ((TextView) findViewById(R.id.ScreenNumber)).setTextColor(Color.RED) ;
+            textview.setText("0") ;
+            textviewtarget.setText("0" );
+            onScreen= "";
         }
-
+        else {
+            textview.setText(answer);
+            int res = Integer.valueOf(answer) ;
+            double finalres = new Double(res * currentratio) ;
+            TextView targetcurrency = (TextView) findViewById(R.id.now) ;
+            targetcurrency.setText(String.valueOf(finalres)) ;
+            ((TextView) findViewById(R.id.ScreenNumber)).setTextColor(Color.BLACK);
+        }
+    }
+    public void changeCurrency(){
+        String answer = calculate(onScreen) ;
+        int res = Integer.valueOf(answer) ;
+        double finalres = new Double(res * currentratio) ;
+        TextView targetcurrency = (TextView) findViewById(R.id.now) ;
+        targetcurrency.setText(String.valueOf(finalres)) ;
+        ((TextView) findViewById(R.id.ScreenNumber)).setTextColor(Color.BLACK);
     }
 
 }
