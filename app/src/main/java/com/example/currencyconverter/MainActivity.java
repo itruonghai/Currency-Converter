@@ -136,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
         textview.setText("0");
         ((TextView)findViewById(R.id.vndcurrency)).setText("0");
         ((TextView)findViewById(R.id.now)).setText("0");
+        ((TextView) findViewById(R.id.ScreenNumber)).setTextColor(Color.BLACK) ;
+
 
 
     }
@@ -150,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
             textview.setText("0") ;
             textviewtarget.setText("0" );
             onScreen= "";
+
+
         }
         else {
             textview.setText(answer);
