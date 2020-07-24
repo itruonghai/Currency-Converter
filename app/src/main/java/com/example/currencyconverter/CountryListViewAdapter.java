@@ -69,6 +69,12 @@ class CountryListViewAdapter extends BaseAdapter {
             holder.img.setBackgroundResource(R.drawable.euro1);
         else if (Country.getCountryName()== "British" )
             holder.img.setBackgroundResource(R.drawable.british);
+//        holder.tv1.setVisibility(convertView.GONE);
+//        holder.tv2.setVisibility(convertView.GONE);
+//        holder.img.setVisibility(convertView.GONE);
+
+
+
 
 
 

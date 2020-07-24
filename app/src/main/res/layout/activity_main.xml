@@ -217,7 +217,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="numpadClicked"
+                android:onClick="sendMessage"
                 android:id="@+id/plusbutton"
                 android:text="+">
             </Button>

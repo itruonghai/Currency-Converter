@@ -2,6 +2,7 @@ package com.example.currencyconverter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Country> CountryList ;
     CountryListViewAdapter CountryListViewAdapter;
     ListView listViewCountry;
+    ArrayList<Country> CountryList1 ;
+
     String onScreen = "" ;
     double currentratio = new Double(0.000043);
     @Override
@@ -30,23 +33,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        CountryList = new ArrayList<>() ;
-        CountryList.add(new Country("USA", "@drawable/usa1", "United States Dollar $ ",0.000043)) ;
-        CountryList.add(new Country("Japan", "@drawable/japan", "Japanese Yen ¥",0.0046)) ;
-        CountryList.add(new Country("Euro", "@drawable/euro1", "Euro €",0.000038)) ;
-        CountryList.add(new Country("British", "@drawable/british", "Pound Sterling £",0.000034)) ;
-        CountryList.add(new Country("USA", "@drawable/usa1", "United States Dollar $ ",0.000043)) ;
-        CountryList.add(new Country("Japan", "@drawable/japan", "Japanese Yen ¥",0.0046)) ;
-        CountryList.add(new Country("Euro", "@drawable/euro1", "Euro €",0.000038)) ;
-        CountryList.add(new Country("British", "@drawable/british", "Pound Sterling £",0.000034)) ;
-        CountryListViewAdapter = new CountryListViewAdapter(CountryList);
 
+        CountryList = new ArrayList<>() ;
+        CountryList1 = new ArrayList<>() ;
+        CountryList.add(new Country("USA", "@drawable/usa1", "United States Dollar $ ",0.000043)) ;
+        CountryList.add(new Country("Japan", "@drawable/japan", "Japanese Yen ¥",0.0046)) ;
+        CountryList.add(new Country("Euro", "@drawable/euro1", "Euro €",0.000038)) ;
+        CountryList.add(new Country("British", "@drawable/british", "Pound Sterling £",0.000034)) ;
+        CountryList1.add(new Country("USA1", "@drawable/usa1", "United States Dollar $ ",0.000043)) ;
+        CountryList1.add(new Country("Japan2", "@drawable/japan", "Japanese Yen ¥",0.0046)) ;
+        CountryList1.add(new Country("Euro3", "@drawable/euro1", "Euro €",0.000038)) ;
+        CountryList1.add(new Country("British4", "@drawable/british", "Pound Sterling £",0.000034)) ;
+        CountryListViewAdapter = new CountryListViewAdapter(CountryList);
         listViewCountry = findViewById(R.id.listviewcountry);
         listViewCountry.setAdapter(CountryListViewAdapter);
+
         listViewCountry.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Country country = (Country) CountryListViewAdapter.getItem(position);
+
                 ((TextView) findViewById(R.id.Name)).setText(country.getCountryName());
                 TextView text = (TextView) findViewById(R.id.NameCurrency);
                 ImageView img = (ImageView) findViewById(R.id.img) ;
@@ -70,19 +76,24 @@ public class MainActivity extends AppCompatActivity {
                     changeCurrency();
 
                 }
-                else if (country.getCountryName().equals("British") ){
+                else if (country.getCountryName().equals("British") ) {
                     img.setBackgroundResource(R.drawable.british);
                     text.setText(country.getCurrencyName());
-                    currentratio = country.getRatiorate() ;
+                    currentratio = country.getRatiorate();
                     changeCurrency();
 
                 }
 
+
             }
+
         });
 
 
+
+
     }
+
     public String calculate(String input){
         String parsedInteger = "";
         String operator = "";
@@ -130,6 +141,13 @@ public class MainActivity extends AppCompatActivity {
         textview.setText(onScreen);
 
     }
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this,chooseflag.class);
+//        bundle.putSerializable("countrylist1", CountryList1);
+//        intent.putExtra("hai dep trai vai loz", "Giang heo");
+        intent.putExtra("countrylist1", CountryList1);
+        startActivity(intent);
+    }
     public void deleteClicked(View view){
         TextView textview = (TextView) findViewById(R.id.ScreenNumber) ;
         onScreen = "" ;
@@ -142,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void equalClicked(View view){
-
         TextView textview = (TextView) findViewById(R.id.vndcurrency) ;
         TextView textviewtarget = (TextView) findViewById(R.id.now) ;
         String answer = calculate(onScreen) ;
