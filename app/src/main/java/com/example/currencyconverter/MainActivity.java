@@ -51,38 +51,10 @@ public class MainActivity extends AppCompatActivity {
         listViewCountry.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Country country = (Country) CountryListViewAdapter.getItem(position);
+                view.findViewById(R.id.imageView_flag1).setVisibility(view.GONE);
+                view.findViewById(R.id.CountryName).setVisibility(view.GONE);
+                view.findViewById(R.id.Currency).setVisibility(view.GONE);
 
-                ((TextView) findViewById(R.id.Name)).setText(country.getCountryName());
-                TextView text = (TextView) findViewById(R.id.NameCurrency);
-                ImageView img = (ImageView) findViewById(R.id.img) ;
-                if (country.getCountryName().equals("USA") ) {
-                    img.setBackgroundResource(R.drawable.usa1);
-                    text.setText(country.getCurrencyName());
-                    currentratio = country.getRatiorate() ;
-                    changeCurrency();
-                }
-                else if (country.getCountryName().equals("Japan")) {
-                    img.setBackgroundResource(R.drawable.japan);
-                    text.setText(country.getCurrencyName());
-                    currentratio = country.getRatiorate() ;
-                    changeCurrency();
-
-                }
-                else if (country.getCountryName().equals("Euro") ){
-                    img.setBackgroundResource(R.drawable.euro1);
-                    text.setText(country.getCurrencyName());
-                    currentratio = country.getRatiorate() ;
-                    changeCurrency();
-
-                }
-                else if (country.getCountryName().equals("British") ) {
-                    img.setBackgroundResource(R.drawable.british);
-                    text.setText(country.getCurrencyName());
-                    currentratio = country.getRatiorate();
-                    changeCurrency();
-
-                }
 
 
             }
