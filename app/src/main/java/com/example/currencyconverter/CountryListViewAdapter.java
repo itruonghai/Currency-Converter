@@ -25,6 +25,10 @@ class CountryListViewAdapter extends BaseAdapter {
         this.resultinVND = result ;
     }
 
+    public int getResultinVND() {
+        return resultinVND;
+    }
+
     @Override
     public int getCount() {
         //Trả về tổng số phần tử, nó được gọi bởi ListView
