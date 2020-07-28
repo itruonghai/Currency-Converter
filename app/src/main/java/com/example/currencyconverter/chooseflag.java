@@ -1,11 +1,13 @@
 package com.example.currencyconverter;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -31,21 +33,8 @@ public class chooseflag extends AppCompatActivity {
         ArrayList<Integer> HiddenPos2 = intent.getIntegerArrayListExtra("HiddenPos2");
 
         CountryListViewAdapter1 = new CountryListViewAdapter(CountryList1, HiddenPos2,0);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Button backbutton = (Button) findViewById(R.id.Back) ;
-        backbutton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                final Intent data = new Intent();
-                data.putIntegerArrayListExtra("HiddenPosBack", ListPositionClick);
-                for (int i : ListPositionClick)
-                    Log.i("DEBUG", "ListPosClick" + String.valueOf(i)) ;
-
-                setResult(Activity.RESULT_OK, data);
-//                finish();
-                onBackPressed();
-            }
-        });
 
         listViewCountry1 = findViewById(R.id.listviewcountry1);
         listViewCountry1.setAdapter(CountryListViewAdapter1);
@@ -60,5 +49,23 @@ public class chooseflag extends AppCompatActivity {
 
         });
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent();
+                intent.putIntegerArrayListExtra("HiddenPosBack", ListPositionClick);
+                setResult(RESULT_OK, intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

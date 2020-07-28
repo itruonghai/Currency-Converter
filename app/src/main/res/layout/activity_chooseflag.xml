@@ -6,26 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".chooseflag">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:id="@+id/Back"
-         />
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="HAI"
-        android:textSize="50dp"
-        android:id="@+id/testflag">
-
-    </TextView>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listviewcountry1">
-
     </ListView>
 </LinearLayout>

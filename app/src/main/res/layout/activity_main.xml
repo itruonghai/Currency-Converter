@@ -61,21 +61,30 @@
         android:background="#BBBBBB"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200sp"
+        android:layout_height="185sp"
         android:orientation="vertical">
     <ListView
         android:id="@+id/listviewcountry"
         android:paddingTop="5sp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
          />
     </LinearLayout>
-
+    <ImageButton
+        android:layout_height="wrap_content"
+        android:layout_width="50sp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:onClick="sendMessage"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/addbutton"
+        android:background="#FFFFFF"></ImageButton>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -176,7 +185,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="sendMessage"
+                android:onClick="numpadClicked"
                 android:id="@+id/plusbutton"
                 android:text="+">
             </Button>
