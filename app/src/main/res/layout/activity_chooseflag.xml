@@ -11,17 +11,17 @@
         android:layout_height="wrap_content"
         android:text="Back"
         android:id="@+id/Back"
-        android:onClick="BackButton" />
+         />
 
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="HAI"
         android:textSize="50dp"
         android:id="@+id/testflag">
 
-    </EditText>
+    </TextView>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

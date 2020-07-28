@@ -7,9 +7,9 @@ public class Country implements Parcelable{
     private String countryName;
     private double ratiorate ;
     // Image name (Without extension)
-    private String flagName;
+    private int flagName;
     private String CurrencyName;
-    public Country(String countryName, String flagName, String CurrencyName, double ratiorate ){
+    public Country(String countryName, int flagName, String CurrencyName, double ratiorate ){
         this.countryName = countryName ;
         this.flagName = flagName ;
         this.CurrencyName = CurrencyName ;
@@ -19,7 +19,7 @@ public class Country implements Parcelable{
         return this.countryName ;
     }
     public double getRatiorate(){return this.ratiorate;}
-    public String getFlagName() {
+    public int getFlagName() {
         return flagName;
     }
     public String getCurrencyName() {
@@ -28,7 +28,7 @@ public class Country implements Parcelable{
     public Country(Parcel in) {
         // put your data using = in.readString();
         this.countryName = in.readString();;
-        this.flagName = in.readString();;
+        this.flagName = in.readInt();;
         this.CurrencyName = in.readString();;
         this.ratiorate = in.readDouble();
 
@@ -43,7 +43,7 @@ public class Country implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(countryName);
-        dest.writeString(flagName);
+        dest.writeInt(flagName);
         dest.writeString(CurrencyName);
         dest.writeDouble(ratiorate);
     }

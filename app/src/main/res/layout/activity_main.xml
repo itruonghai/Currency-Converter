@@ -54,64 +54,23 @@
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10sp"
-        android:id="@+id/Currency">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:id="@+id/img"
-            android:background="@drawable/usa1"
-            android:paddingTop="10sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="USA"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/Name"
-            android:paddingStart="8sp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd"
-                android:textSize="25sp"
-                android:id="@+id/now"
-                android:maxLines="1"
-                android:text="0"
-                android:layout_gravity="center_vertical"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="textEnd"
-                android:id="@+id/NameCurrency"
-                android:text="US Dollar"
-                android:layout_gravity="center_vertical"/>
-        </LinearLayout>
-    </LinearLayout>
     <View
         android:layout_width="fill_parent"
         android:layout_height="5dp"
         android:background="#BBBBBB"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="185sp">
-        <ListView
-            android:id="@+id/listviewcountry"
-            android:paddingTop="5sp"
-            android:layout_width="match_parent"
-            android:scrollbars="vertical"
-
-            android:layout_height="wrap_content" />
+        android:layout_height="200sp"
+        android:orientation="vertical">
+    <ListView
+        android:id="@+id/listviewcountry"
+        android:paddingTop="5sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
