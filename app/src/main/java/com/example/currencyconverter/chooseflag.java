@@ -26,6 +26,7 @@ public class chooseflag extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_chooseflag);
         Intent intent = getIntent();
 
@@ -33,7 +34,7 @@ public class chooseflag extends AppCompatActivity {
         ArrayList<Integer> HiddenPos2 = intent.getIntegerArrayListExtra("HiddenPos2");
 
         CountryListViewAdapter1 = new CountryListViewAdapter(CountryList1, HiddenPos2,0);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         listViewCountry1 = findViewById(R.id.listviewcountry1);
@@ -48,6 +49,7 @@ public class chooseflag extends AppCompatActivity {
             }
 
         });
+
 
     }
     @Override
