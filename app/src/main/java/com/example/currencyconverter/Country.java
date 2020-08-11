@@ -9,12 +9,15 @@ public class Country implements Parcelable{
     // Image name (Without extension)
     private int flagName;
     private String CurrencyName;
-    public Country(String countryName, int flagName, String CurrencyName, double ratiorate ){
+    private String unit;
+    public Country(String countryName, int flagName, String CurrencyName, String unit ){
         this.countryName = countryName ;
         this.flagName = flagName ;
         this.CurrencyName = CurrencyName ;
-        this.ratiorate = ratiorate ;
+        this.ratiorate = 0 ;
+        this.unit = unit ;
     }
+    public String getUnit(){return this.unit;}
     public String getCountryName(){
         return this.countryName ;
     }
@@ -31,6 +34,7 @@ public class Country implements Parcelable{
         this.flagName = in.readInt();;
         this.CurrencyName = in.readString();;
         this.ratiorate = in.readDouble();
+        this.unit = in.readString() ;
 
     }
 
@@ -46,6 +50,7 @@ public class Country implements Parcelable{
         dest.writeInt(flagName);
         dest.writeString(CurrencyName);
         dest.writeDouble(ratiorate);
+        dest.writeString(unit);
     }
 
     public static final Parcelable.Creator<Country> CREATOR = new Parcelable.Creator<Country>() {
@@ -60,4 +65,8 @@ public class Country implements Parcelable{
             return new Country(source);
         }
     };
+
+    public void addratiorate(Double aDouble) {
+        this.ratiorate = aDouble  ;
+    }
 }

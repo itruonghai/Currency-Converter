@@ -50,7 +50,7 @@ class CountryListViewAdapter extends BaseAdapter {
         return 0;
     }
     public class Holder{
-        TextView tv1,tv2 ;
+        TextView tv1,tv2, tv3 ;
         ImageView img ;
     }
     @Override
@@ -69,20 +69,24 @@ class CountryListViewAdapter extends BaseAdapter {
         Country Country = (Country) getItem(position);
         holder.tv1 = ((TextView) viewProduct.findViewById(R.id.CountryName));
         holder.tv2 = ((TextView) viewProduct.findViewById(R.id.Currency));
+        holder.tv3 = ((TextView) viewProduct.findViewById(R.id.NameCurrency));
         holder.img = (ImageView) viewProduct.findViewById(R.id.imageView_flag1) ;
         if (HiddenPos.contains(position)){
             holder.img.setVisibility(viewProduct.GONE);
             holder.tv1.setVisibility(viewProduct.GONE);
             holder.tv2.setVisibility(viewProduct.GONE);
+            holder.tv3.setVisibility(viewProduct.GONE);
         }
         holder.tv1.setText(Country.getCountryName());
-
+        holder.tv3.setText(Country.getCurrencyName());
+        holder.tv2.setText(String.valueOf("0"));
         if (resultinVND == 0) {
             holder.tv2.setText(Country.getCurrencyName());
-            Log.d("SHow VND", "VND:" + String.valueOf(resultinVND));
+            holder.tv3.setVisibility(viewProduct.GONE);
+            Log.d("SHow VND", "VND:" + String.format("%.2f",resultinVND * getRatio(position)));
         }
         else
-            holder.tv2.setText(String.valueOf(resultinVND * getRatio(position)));
+            holder.tv2.setText(String.format("%.4f",resultinVND * getRatio(position)));
         holder.img.setBackgroundResource(Country.getFlagName());
         viewProduct.setTag(holder);
 
