@@ -3,6 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,7 +30,8 @@ public class History extends AppCompatActivity{
         String onScreen = intent.getStringExtra("StringOnScreen") ;
         ArrayList<Country> CountryList1 = intent.getParcelableArrayListExtra("countrylisthistory");
         ArrayList<Integer> HiddenPos2 = intent.getIntegerArrayListExtra("HiddenPoshistory");
-
+        for (Integer i : HiddenPos2)
+            Log.d("HiddenPosHis", String.valueOf(i)) ;
         CountryListViewAdapter1 = new CountryListViewAdapter(CountryList1, HiddenPos2,Integer.valueOf(onScreen));
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

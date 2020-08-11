@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-
+            else{
             if (inline == ""){
                 FileInputStream fin = null;
                 try {
@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-            }
+            }}
 //            Log.d("TestJson: ", "MyJson: " + inline);
             int index_of_rate = inline.lastIndexOf("{") ;
             String newString = inline.substring(index_of_rate + 1, inline.length() - 2 );
@@ -332,12 +332,12 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
         try {
             fin = openFileInput("targetCountry.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         int d = 0;
         while(true){
             try {
@@ -353,9 +353,12 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         String[] HiddenList = targetHidden.split(",") ;
-        for (String i : HiddenList)
-            HiddenPosHistory.add(Integer.valueOf(i)) ;
-
+        Log.d("TestReadHidden", targetHidden);
+        if (HiddenList != null) {
+            for (String i : HiddenList)
+                if (i != "")
+                HiddenPosHistory.add(Integer.valueOf(i));
+        }
         try {
             fin = openFileInput("datetime.txt");
         } catch (FileNotFoundException e) {
@@ -380,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, History.class);
         intent.putExtra("StringOnScreen", result);
-        intent.putExtra("countrylisthistory", CountryListHistory);
+        intent.putExtra("countrylisthistory", BaseCountryList);
         intent.putExtra("datetime", datetime);
         intent.putIntegerArrayListExtra("HiddenPoshistory", HiddenPosHistory);
         startActivity(intent);
@@ -460,7 +463,10 @@ public class MainActivity extends AppCompatActivity {
         String newString = "";
         for (Integer i: HiddenPos1){
             newString = newString + String.valueOf(i) + "," ;
+
         }
+        newString = removelastchar(newString);
+        Log.d("TestHiddenPos1", newString);
         try {
             FileOutputStream fOut = openFileOutput("targetCountry.txt", Context.MODE_PRIVATE);
             fOut.write(newString.getBytes());
@@ -484,6 +490,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+    public String removelastchar(String str) {
+        if (str != null && str.length() > 0 && str.charAt(str.length() - 1) == 'x') {
+            str = str.substring(0, str.length() - 1);
+        }
+        return str;
     }
     @Override
     protected  void onSaveInstanceState(Bundle outState) {
